@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: pixil-frame-0 (8)_0
+      name: Ball_0
       rect:
         serializedVersion: 2
         x: 0
@@ -124,14 +124,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 540ac8ed52e8d40e1af30a0a7f8241b4
-      internalID: -1494910842
+      spriteID: 8fb085fc1e24341279ab7398ba7bbb65
+      internalID: -1315347423
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pixil-frame-0 (8)_1
+      name: Ball_1
       rect:
         serializedVersion: 2
         x: 490
@@ -145,14 +145,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8967116d75d4b486187578f180edd11a
-      internalID: 1076875186
+      spriteID: a361f7c0ce28947b28a3b00aaf7e3968
+      internalID: 705921230
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pixil-frame-0 (8)_2
+      name: Ball_2
       rect:
         serializedVersion: 2
         x: 242
@@ -166,14 +166,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 07b2e204703fe46cbb5f04fc4e012787
-      internalID: 1478831188
+      spriteID: bea110b25ffbe4d9bbcef0cdd595446f
+      internalID: 247436424
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pixil-frame-0 (8)_3
+      name: Ball_3
       rect:
         serializedVersion: 2
         x: 0
@@ -187,14 +187,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3050a893dc1d84fb4a9594c9c3c2dba5
-      internalID: -269820878
+      spriteID: acb975957542642a487ef661a851b12b
+      internalID: 341670427
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pixil-frame-0 (8)_4
+      name: Ball_4
       rect:
         serializedVersion: 2
         x: 490
@@ -208,8 +208,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9f4a1902ea94b4d48bddd0a8d8185a8f
-      internalID: -900030010
+      spriteID: a30a9cbf8fe1a4375a5d38941df881bd
+      internalID: 439206058
       vertices: []
       indices: 
       edges: []
@@ -225,11 +225,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      pixil-frame-0 (8)_0: -1494910842
-      pixil-frame-0 (8)_1: 1076875186
-      pixil-frame-0 (8)_2: 1478831188
-      pixil-frame-0 (8)_3: -269820878
-      pixil-frame-0 (8)_4: -900030010
+      Ball_0: -1315347423
+      Ball_1: 705921230
+      Ball_2: 247436424
+      Ball_3: 341670427
+      Ball_4: 439206058
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
