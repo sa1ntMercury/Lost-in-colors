@@ -10,6 +10,8 @@ TagManager:
   - ColorChanger
   - Magenta
   - LimitLine
+  - RightDirection
+  - LeftDirection
   layers:
   - Default
   - TransparentFX
@@ -17,8 +19,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - TopClouds
+  - DownClouds
   - 
   - 
   - 

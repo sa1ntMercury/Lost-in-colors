@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class Setup : MonoBehaviour
 {
+    [SerializeField] private Color _backgroundColor;
     [SerializeField] private GameObject _circle;
     [SerializeField] private GameObject _clouds;
     [SerializeField] private LimitLine _limitLine;
 
+
+    public Color BackgroundColor { get => _backgroundColor; }
 
     // Start is called before the first frame update
     void Start()

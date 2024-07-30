@@ -12,22 +12,16 @@ public class Player : MonoBehaviour
     [SerializeField] private Color _colorRed;
     [SerializeField] private Color _colorGreen;
 
-    [SerializeField] private Setup  _prefab;
     [SerializeField] private Manager _manager;
 
-    //private Camera _camera;
     private Rigidbody2D _rigidbody2D;
     private SpriteRenderer _spriteRenderer;
     private string _currentColor;
-
-    private bool _isDynamic;
 
     private void Start()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
-        //_camera = GetComponentInChildren<Camera>();
-
 
         SetRandomColor();
     }
@@ -39,7 +33,6 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //_camera.backgroundColor = _colorMagenta;
         if (collision.CompareTag("ColorChanger"))
         {
             SetRandomColor();
@@ -56,13 +49,14 @@ public class Player : MonoBehaviour
 
         if (collision.CompareTag(_currentColor))
         {
-            Debug.Log("+1");
+            _manager.PointsCounter();
             collision.enabled = false;
         }
 
         if (!collision.CompareTag(_currentColor))
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            _manager.LoseGame();
+            Points.RecordResult(_manager.Points);
         }
     }
 
