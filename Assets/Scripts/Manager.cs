@@ -5,19 +5,29 @@ using TMPro;
 using UnityEngine.SceneManagement;
 
 public class Manager : MonoBehaviour
-{ 
-    [SerializeField] private Setup[] _prefab;
+{
+    [SerializeField] private Player _player;
     [SerializeField] private Camera _camera;
+
+    [SerializeField] private Setup[] _prefab;
+
     [SerializeField] private TMP_Text _points;
     [SerializeField] private TMP_Text _finalScore;
+    [SerializeField] private TMP_Text _pauseScore;
+    [SerializeField] private TMP_Text _timerText;
 
     [SerializeField] private GameObject _mainPanel;
+    [SerializeField] private GameObject _pausePanel;
     [SerializeField] private GameObject _losePanel;
 
     private int _countUsedPrefabs;
     private int _prefabNumber;
     private List<Setup> _setups;
     public int Points { get; private set; }
+    public bool IsTimerRun { get; private set; }
+    public bool IsNewRun { get; private set; }
+
+
 
     private void Awake()
     {
@@ -73,7 +83,11 @@ public class Manager : MonoBehaviour
 
     public void LoseGame()
     {
-        Time.timeScale = 0.0f;
+        _player.PausePlayer();
+
+        _mainPanel.SetActive(false);
+        _losePanel.SetActive(true);
+
 
         if (Points == 0)
         {
@@ -83,21 +97,62 @@ public class Manager : MonoBehaviour
         {
             _finalScore.text = _points.text;
         }
+    }
+
+    public void Pause()
+    {
+        StopAllCoroutines();
+
+        _pauseScore.text = _points.text;
 
         _mainPanel.SetActive(false);
-        _losePanel.SetActive(true);
+        _pausePanel.SetActive(true);
+
+        _player.PausePlayer();
     }
+
+    public void Resume()
+    {
+        StartCoroutine(ResumeProcess());
+    }
+
 
     public void TryAgain()
     {
-        Time.timeScale = 1.0f;
         SceneManager.LoadScene("Game");
     }
 
     public void BackToMainMenu()
     {
-        Time.timeScale = 1.0f;
         SceneManager.LoadScene("MainMenu");
     }
+
+    public IEnumerator ResumeProcess()
+    {
+        _pausePanel.SetActive(false);
+        _mainPanel.SetActive(true);
+
+        _timerText.gameObject.SetActive(true);
+        IsTimerRun = true;
+
+        for (int i = 3; i > 0; i--)
+        {
+            _timerText.text = $"{i}";
+            yield return new WaitForSeconds(1f);
+        }
+
+        _timerText.gameObject.SetActive(false);
+        _player.ResumePlayer();
+        IsTimerRun = false;
+        IsNewRun = false;
+
+    }
+
+    public void HideTimerText()
+    {
+        _timerText.gameObject.SetActive(false);
+        IsTimerRun = false;
+    }
+
 
 }

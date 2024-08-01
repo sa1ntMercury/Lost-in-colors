@@ -12,6 +12,7 @@ TagManager:
   - LimitLine
   - RightDirection
   - LeftDirection
+  - Yellow
   layers:
   - Default
   - TransparentFX

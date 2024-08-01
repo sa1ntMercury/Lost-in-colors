@@ -15,7 +15,7 @@ public class Setup : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        float circleScale = Random.Range(0.7f, 1.25f);
+        float circleScale = Random.Range(0.7f, 1.55f);
         _circle.transform.localScale = new Vector3(circleScale, circleScale, circleScale);
 
         float cloudsXPosition = Random.Range(-4f, 4f);
@@ -26,10 +26,10 @@ public class Setup : MonoBehaviour
         switch (_switcher)
         {
             case 1:
-                _circle.GetComponent<Rotator>().Speed = Random.Range(85, 150);
+                _circle.GetComponent<Rotator>().Speed = Random.Range(90, 160);
                 break;
             case 2:
-                _circle.GetComponent<Rotator>().Speed = Random.Range(-150, -85);
+                _circle.GetComponent<Rotator>().Speed = Random.Range(-160, -90);
                 break;
             default:
                 break;

@@ -4,13 +4,11 @@ using UnityEngine;
 
 public static class Points
 {
-    private static int _bestResult;
-
     public static void RecordResult(int result)
     {
-        if(_bestResult < result)
+        if (PlayerPrefs.GetInt("HighScore") < result)
         {
-            _bestResult = result;
+            PlayerPrefs.SetInt("HighScore", result);
         }
     }
     
