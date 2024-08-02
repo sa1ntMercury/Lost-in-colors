@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Color _colorMagenta;
     [SerializeField] private Color _colorBlue;
     [SerializeField] private Color _colorYellow;
+    [SerializeField] private Color _colorRed;
 
     [SerializeField] private AudioSource _jumpSound;
     [SerializeField] private AudioSource _pointSound;
@@ -21,6 +22,8 @@ public class Player : MonoBehaviour
     private Rigidbody2D _rigidbody2D;
     private SpriteRenderer _spriteRenderer;
     private string _currentColor;
+
+    public int CountAvailableColors { get; set; }
 
 
     private void Start()
@@ -39,27 +42,32 @@ public class Player : MonoBehaviour
             _manager.HideTimerText();
         }
 
-
         _jumpSound.Play();
         _rigidbody2D.velocity = Vector2.up * _jumpForce;
-
-        
-
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("ColorChanger"))
         {
-            SetRandomColor();
-            Destroy(collision.gameObject);
-
             Vector3 position = collision.GetComponentInParent<Transform>().position;
-
-            position.y += 4;
 
             _manager.AddSetup(position);
 
+            SetRandomColor();
+
+            Destroy(collision.gameObject);
+
+            return;
+        }
+
+        if (collision.CompareTag("VisibleColorChanger"))
+        {
+            _currentColor = collision.GetComponent<VisibleColorChanger>().CurrentColor;
+            SetVisibleChangerColor(_currentColor);
+            Destroy(collision.gameObject);
+
+            collision.GetComponentInParent<Rotator>().PlugInColliders();
             return;
         }
 
@@ -80,7 +88,7 @@ public class Player : MonoBehaviour
 
     private void SetRandomColor()
     {
-        int index = Random.Range(0, 4);
+        int index = Random.Range(0, CountAvailableColors);
 
         switch (index)
         {
@@ -100,6 +108,34 @@ public class Player : MonoBehaviour
                 _currentColor = "Yellow";
                 _spriteRenderer.color = _colorYellow;
                 break;
+            case 4:
+                _currentColor = "Red";
+                _spriteRenderer.color = _colorRed;
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void SetVisibleChangerColor(string color)
+    {
+        switch (color)
+        {
+            case "Green":
+                _spriteRenderer.color = _colorGreen;
+                break;
+            case "Magenta":
+                _spriteRenderer.color = _colorMagenta;
+                break;
+            case "Blue":
+                _spriteRenderer.color = _colorBlue;
+                break;
+            case "Yellow":
+                _spriteRenderer.color = _colorYellow;
+                break;
+            case "Red":
+                _spriteRenderer.color = _colorRed;
+                break;
             default:
                 break;
         }
@@ -108,13 +144,12 @@ public class Player : MonoBehaviour
     public void PausePlayer()
     {
         _rigidbody2D.bodyType = RigidbodyType2D.Static;
-        //_rigidbody2D.Sleep();
     }
 
 
     public void ResumePlayer()
     {
         _rigidbody2D.bodyType = RigidbodyType2D.Dynamic;
-        //_rigidbody2D.velocity = Vector2.up;
     }
+
 }

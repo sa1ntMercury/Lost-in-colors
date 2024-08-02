@@ -13,6 +13,10 @@ TagManager:
   - RightDirection
   - LeftDirection
   - Yellow
+  - VisibleColorChanger
+  - CircleCollider
+  - 5 Colors
+  - 4 Colors
   layers:
   - Default
   - TransparentFX
