@@ -6,9 +6,9 @@ public static class Points
 {
     public static void RecordResult(int result)
     {
-        if (PlayerPrefs.GetInt("HighScore") < result)
+        if (PlayerPrefs.GetInt(Settings.HighScore) < result)
         {
-            PlayerPrefs.SetInt("HighScore", result);
+            PlayerPrefs.SetInt(Settings.HighScore, result);
         }
     }
     

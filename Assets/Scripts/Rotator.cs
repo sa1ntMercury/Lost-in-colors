@@ -4,20 +4,27 @@ using UnityEngine;
 
 public class Rotator : MonoBehaviour
 {
-    public float Speed { get; set; }
+    private float _speed;
+
+    private readonly float MinScale = 0.5f;
+    private readonly float MaxScale = 1.05f;
+
+    private readonly float MinSpeed = 90;
+    private readonly float MaxSpeed = 160;
+
 
     private void Start()
     {
-        float circleScale = Random.Range(0.5f, 1.05f);
+        float circleScale = Random.Range(MinScale, MaxScale);
         transform.localScale = new Vector3(circleScale, circleScale, circleScale);
 
         switch (Random.Range(1, 3))
         {
             case 1:
-                Speed = Random.Range(90, 160);
+                _speed = Random.Range(MinSpeed, MaxSpeed);
                 break;
             case 2:
-                Speed = Random.Range(-160, -90);
+                _speed = -Random.Range(MinSpeed, MaxSpeed);
                 break;
             default:
                 break;
@@ -26,7 +33,7 @@ public class Rotator : MonoBehaviour
 
     void Update()
     {
-        transform.Rotate(0f, 0f, Speed * Time.deltaTime);
+        transform.Rotate(0f, 0f, _speed * Time.deltaTime);
     }
 
     public void PlugInColliders()

@@ -5,19 +5,20 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] private GameManager _manager;
     [SerializeField] private float _jumpForce;
 
+    [Header("COLORS")]
     [SerializeField] private Color _colorGreen;
     [SerializeField] private Color _colorMagenta;
     [SerializeField] private Color _colorBlue;
     [SerializeField] private Color _colorYellow;
     [SerializeField] private Color _colorRed;
 
+    [Header("AUDIO")]
     [SerializeField] private AudioSource _jumpSound;
     [SerializeField] private AudioSource _pointSound;
     [SerializeField] private AudioSource _loseSound;
-
-    [SerializeField] private Manager _manager;
 
     private Rigidbody2D _rigidbody2D;
     private SpriteRenderer _spriteRenderer;
@@ -31,7 +32,7 @@ public class Player : MonoBehaviour
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
 
-        SetRandomColor();
+        SetColor();
     }
 
     public void OnJump()
@@ -51,23 +52,19 @@ public class Player : MonoBehaviour
         if (collision.CompareTag("ColorChanger"))
         {
             Vector3 position = collision.GetComponentInParent<Transform>().position;
-
             _manager.AddSetup(position);
-
-            SetRandomColor();
+            SetColor();
 
             Destroy(collision.gameObject);
-
             return;
         }
 
         if (collision.CompareTag("VisibleColorChanger"))
         {
-            _currentColor = collision.GetComponent<VisibleColorChanger>().CurrentColor;
-            SetVisibleChangerColor(_currentColor);
-            Destroy(collision.gameObject);
-
+            SetColor(collision.GetComponent<VisibleColorChanger>().ColorIndex);
             collision.GetComponentInParent<Rotator>().PlugInColliders();
+
+            Destroy(collision.gameObject);
             return;
         }
 
@@ -76,6 +73,7 @@ public class Player : MonoBehaviour
             _pointSound.Play();
             _manager.PointsCounter();
             collision.enabled = false;
+            return;
         }
 
         if (!collision.CompareTag(_currentColor))
@@ -83,12 +81,16 @@ public class Player : MonoBehaviour
             _loseSound.Play();
             _manager.LoseGame();
             Points.RecordResult(_manager.Points);
+            return;
         }
     }
 
-    private void SetRandomColor()
+    private void SetColor(int index = -1)
     {
-        int index = Random.Range(0, CountAvailableColors);
+        if (index == -1)
+        {
+            index = Random.Range(0, CountAvailableColors);
+        }
 
         switch (index)
         {
@@ -110,30 +112,6 @@ public class Player : MonoBehaviour
                 break;
             case 4:
                 _currentColor = "Red";
-                _spriteRenderer.color = _colorRed;
-                break;
-            default:
-                break;
-        }
-    }
-
-    private void SetVisibleChangerColor(string color)
-    {
-        switch (color)
-        {
-            case "Green":
-                _spriteRenderer.color = _colorGreen;
-                break;
-            case "Magenta":
-                _spriteRenderer.color = _colorMagenta;
-                break;
-            case "Blue":
-                _spriteRenderer.color = _colorBlue;
-                break;
-            case "Yellow":
-                _spriteRenderer.color = _colorYellow;
-                break;
-            case "Red":
                 _spriteRenderer.color = _colorRed;
                 break;
             default:

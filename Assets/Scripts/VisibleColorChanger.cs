@@ -10,17 +10,18 @@ public class VisibleColorChanger : MonoBehaviour
     [SerializeField] private Color _colorYellow;
     [SerializeField] private Color _colorRed;
 
-    public string CurrentColor { get; private set; }
-
     private SpriteRenderer _spriteRenderer;
     private bool _isSwitch;
     private int _countAvailableColors;
-    private int _colorIndex;
+
+
+    public int ColorIndex { get; private set; }
 
 
     void Start()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
+
         if(GetComponentInParent<Setup>().CompareTag("4 Colors"))
         {
             _countAvailableColors = 4;
@@ -37,7 +38,6 @@ public class VisibleColorChanger : MonoBehaviour
         {
             StartCoroutine(ColorSwitcher());
         }
-
     }
 
     private IEnumerator ColorSwitcher()
@@ -45,35 +45,35 @@ public class VisibleColorChanger : MonoBehaviour
         _isSwitch = true;
 
         int index = Random.Range(0, _countAvailableColors);
-        if(index == _colorIndex && index == 0)
+
+        if(index == ColorIndex && index == 0)
         {
-            _colorIndex = ++index;
+            ColorIndex = ++index;
         }
-        else if (index == _colorIndex && index == 4)
+        else if (index == ColorIndex && index == _countAvailableColors-1)
         {
-            _colorIndex = --index;
+            ColorIndex = --index;
+        }
+        else
+        {
+            ColorIndex = index;
         }
 
-            switch (_colorIndex)
+        switch (ColorIndex)
         {
             case 0:
-                CurrentColor = "Green";
                 _spriteRenderer.color = _colorGreen;
                 break;
             case 1:
-                CurrentColor = "Magenta";
                 _spriteRenderer.color = _colorMagenta;
                 break;
             case 2:
-                CurrentColor = "Blue";
                 _spriteRenderer.color = _colorBlue;
                 break;
             case 3:
-                CurrentColor = "Yellow";
                 _spriteRenderer.color = _colorYellow;
                 break;
             case 4:
-                CurrentColor = "Red";
                 _spriteRenderer.color = _colorRed;
                 break;
             default:

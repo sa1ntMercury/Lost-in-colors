@@ -1,9 +1,10 @@
-using System;
+ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using Dan.Main;
+using UnityEngine.Networking;
 
 public class Leaderboard : MonoBehaviour
 {
@@ -20,9 +21,16 @@ public class Leaderboard : MonoBehaviour
 
     public void GetLeaderboard()
     {
-        LeaderboardCreator.GetLeaderboard(_publicLeaderboardKey, ((msg) => {
+        if(Application.internetReachability == NetworkReachability.NotReachable)
+        {
+            return;
+        }
 
-            SetLeaderboard(PlayerPrefs.GetString("PlayerName"), PlayerPrefs.GetInt("HighScore"));
+
+        LeaderboardCreator.GetLeaderboard(_publicLeaderboardKey, ((msg) =>
+        {
+
+            SetLeaderboard(PlayerPrefs.GetString(Settings.PlayerName), PlayerPrefs.GetInt(Settings.HighScore));
 
             for (int i = 0; i < _places.Count; i++)
             {
@@ -37,6 +45,11 @@ public class Leaderboard : MonoBehaviour
 
     public static void SetLeaderboard(string username, int score)
     {
+        if (Application.internetReachability == NetworkReachability.NotReachable)
+        {
+            return;
+        }
+
         LeaderboardCreator.UploadNewEntry(_publicLeaderboardKey, username, score, ((msg) => {
 
         }));
@@ -44,13 +57,18 @@ public class Leaderboard : MonoBehaviour
 
     private void GetMyPlace()
     {
+        if (Application.internetReachability == NetworkReachability.NotReachable)
+        {
+            return;
+        }
+
         LeaderboardCreator.GetLeaderboard(_publicLeaderboardKey, ((msg) =>
         {
             for (int i = 0; i < msg.Length; i++)
             {
-                if (msg[i].Username == PlayerPrefs.GetString("PlayerName"))
+                if (msg[i].Username == PlayerPrefs.GetString(Settings.PlayerName))
                 {
-                    PlayerPrefs.SetInt("MyPlace", msg[i].Rank);
+                    PlayerPrefs.SetInt(Settings.MyPlace, msg[i].Rank);
                 }
             }
         }));

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 72563bd6363244c4495673ec95930629
+guid: 7ddfc908a08d14bdd8a100aaeba3d96f
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -45,7 +45,7 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
@@ -110,76 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Ball_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 492
-        width: 208
-        height: 208
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8fb085fc1e24341279ab7398ba7bbb65
-      internalID: -1315347423
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Ball_1
-      rect:
-        serializedVersion: 2
-        x: 490
-        y: 492
-        width: 210
-        height: 208
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a361f7c0ce28947b28a3b00aaf7e3968
-      internalID: 705921230
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Ball_2
-      rect:
-        serializedVersion: 2
-        x: 242
-        y: 260
-        width: 208
-        height: 208
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: bea110b25ffbe4d9bbcef0cdd595446f
-      internalID: 247436424
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Ball_3
+      name: Frame 2_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 208
-        height: 210
+        width: 301
+        height: 301
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -187,29 +124,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: acb975957542642a487ef661a851b12b
-      internalID: 341670427
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Ball_4
-      rect:
-        serializedVersion: 2
-        x: 490
-        y: 0
-        width: 210
-        height: 210
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a30a9cbf8fe1a4375a5d38941df881bd
-      internalID: 439206058
+      spriteID: a88b07bdfe1354e11ac7ee5fc5e78f88
+      internalID: -1894229420
       vertices: []
       indices: 
       edges: []
@@ -225,11 +141,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Ball_0: -1315347423
-      Ball_1: 705921230
-      Ball_2: 247436424
-      Ball_3: 341670427
-      Ball_4: 439206058
+      Frame 2_0: -1894229420
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
