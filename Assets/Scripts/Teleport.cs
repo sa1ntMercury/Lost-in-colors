@@ -4,7 +4,15 @@ using UnityEngine;
 
 public class Teleport : MonoBehaviour
 {
-    private float xDistance;
+    private float _xDistanceTeleport = 19.2f;
+
+    private void Start()
+    {
+        if(CompareTag("RightDirection"))
+        {
+            _xDistanceTeleport = -_xDistanceTeleport;
+        }
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -13,17 +21,7 @@ public class Teleport : MonoBehaviour
         {
             return;
         }
-        else
-        {
-            if (collision.CompareTag("RightDirection"))
-            {
-                xDistance = -19.2f;
-            }
-            else
-            {
-                xDistance = 19.2f;
-            }
-        }
-        collision.transform.position = new Vector3(collision.transform.position.x + xDistance, collision.transform.position.y, collision.transform.position.z);
+       
+        collision.transform.position = new Vector3(collision.transform.position.x + _xDistanceTeleport, collision.transform.position.y, collision.transform.position.z);
     }
 }

@@ -10,6 +10,7 @@ public class SoundManager : MonoBehaviour
     void Awake()
     {
         _slider = GetComponent<Slider>();
+
     }
 
     private void Start()
